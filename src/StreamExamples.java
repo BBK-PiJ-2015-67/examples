@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Example class to illustrate the uses of {@code java.util.Optional}
@@ -12,11 +13,13 @@ public class StreamExamples {
         String[] arr = {"dog", "cow", "hog", "cat", "duck", "bee", "bat", "badger", "horse", "frog"};
         List<String> data = Arrays.asList(arr);
 
+        // this is the idea, we get an optional and then we can check if it has a value
         Optional fourLetterWord = optionalGetAnyWordOfLength(data, 4);
         if (fourLetterWord.isPresent()) System.out.println("Random 4-letter word: " + fourLetterWord.get());
 
-        String threeLetterWord = getAnyWordOfLength(data, 3);
-        System.out.println("Random 3-letter word: " + threeLetterWord);
+        // no need for optional, list might be empty but that's ok
+        List<String> threeLetterWords = getAllWordsOfLength(data, 3);
+        System.out.println("All 3-letter words: " + threeLetterWords.toString());
 
         // this is fine, we KNOW there is a 5-letter word, but it's bad practice
         // see the next attempt
@@ -51,8 +54,8 @@ public class StreamExamples {
         return data.stream().filter(i -> i.length() == l).findAny();
     }
 
-    private static String getAnyWordOfLength(List<String> data, int l) {
-        return data.stream().filter(i -> i.length() == l).findAny().orElse(null);
+    private static List<String> getAllWordsOfLength(List<String> data, int l) {
+        return data.stream().filter(i -> i.length() == l).collect(Collectors.toList());
     }
 
     private static String getWhatever(List<String> data, int l) {
