@@ -128,10 +128,11 @@ public class Exercises {
 
     @Test
     public void listOfAllWords() throws IOException {
-        List<String> output = new LinkedList<>();
-        reader.lines()
-              .map(s -> s.split("\\W+"))
-              .forEach(arr -> Arrays.stream(arr).filter(s -> !s.isEmpty()).forEach(output::add));
+        List<String> output = reader.lines()
+                .map(l -> l.split("\\W+"))
+                .flatMap(Arrays::stream)
+                .filter(s -> !s.isEmpty())
+                .collect(Collectors.toList());
 
         assertEquals(
                 Arrays.asList(
