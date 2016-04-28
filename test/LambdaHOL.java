@@ -104,8 +104,11 @@ public class LambdaHOL {
 
     @Test
     public void joinLineRange() throws IOException {
-        List<String> textLines = reader.lines().collect(Collectors.toList());
-        String output = textLines.get(2) + textLines.get(3);
+        String output = reader.lines()
+                .limit(4)
+                .skip(2)
+                .reduce(String::concat)
+                .orElse("");
 
         assertEquals(
                 "But as the riper should by time decease," +
