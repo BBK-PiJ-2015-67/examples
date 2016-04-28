@@ -157,7 +157,6 @@ public class Exercises {
     // Exercise 8: Create a list containing the words, lowercased, in alphabetical order.
 
     @Test
-    @Ignore
     public void sortedLowerCase() throws IOException {
         List<String> output = reader.lines()
                 .map(l -> l.split("\\W+"))
@@ -194,9 +193,16 @@ public class Exercises {
 
 
     @Test
-    @Ignore
     public void sortedLowerCaseDistinctByLengthThenAlphabetically() throws IOException {
-        List<String> output = null; /* TODO */
+        List<String> output = reader.lines()
+                .map(l -> l.split("\\W+"))
+                .flatMap(Arrays::stream)
+                .filter(s -> !s.isEmpty())
+                .map(String::toLowerCase)
+                .distinct()
+                .sorted()
+                .sorted((a,b) -> Integer.compare(a.length(), b.length()))
+                .collect(Collectors.toList());
 
         assertEquals(
                 Arrays.asList(
