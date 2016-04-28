@@ -103,9 +103,9 @@ public class Exercises {
     // Exercise 5: Join lines 3-4 from the text file into a single string.
 
     @Test
-    @Ignore
     public void joinLineRange() throws IOException {
-        String output = null; /* TODO */
+        List<String> textLines = reader.lines().collect(Collectors.toList());
+        String output = textLines.get(2) + textLines.get(3);
 
         assertEquals(
                 "But as the riper should by time decease," +
