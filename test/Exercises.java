@@ -13,9 +13,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
@@ -116,9 +114,8 @@ public class Exercises {
     // Exercise 6: Find the length of the longest line in the file.
 
     @Test
-    @Ignore
     public void lengthOfLongestLine() throws IOException {
-        int longest = 0; /* TODO */
+        int longest = reader.lines().map(String::length).max(Integer::compare).orElse(-1);
 
         assertEquals(longest, 53);
     }
