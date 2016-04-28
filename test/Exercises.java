@@ -159,7 +159,13 @@ public class Exercises {
     @Test
     @Ignore
     public void sortedLowerCase() throws IOException {
-        List<String> output = null; /* TODO */
+        List<String> output = reader.lines()
+                .map(l -> l.split("\\W+"))
+                .flatMap(Arrays::stream)
+                .filter(s -> !s.isEmpty())
+                .map(String::toLowerCase)
+                .sorted()
+                .collect(Collectors.toList());
 
         assertEquals(
                 Arrays.asList(
