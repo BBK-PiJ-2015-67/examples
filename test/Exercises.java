@@ -5,7 +5,6 @@
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -49,12 +48,11 @@ public class Exercises {
     // Exercise 1: Print out all the words in wordList, which is a static List<String> .
 
     @Test
-    @Ignore
     public void printAllWords() {
         /* TODO */
 
         // We will give you this one to show you the "style"
-        // wordList.forEach(System.out::println);
+        wordList.forEach(System.out::println);
 
         // no assertions
     }
@@ -133,7 +131,7 @@ public class Exercises {
     @Test
     public void listOfAllWords() throws IOException {
         List<String> output = reader.lines()
-                .map(l -> l.split("\\W+"))
+                .map(l -> l.split(REGEXP))
                 .flatMap(Arrays::stream)
                 .filter(s -> !s.isEmpty())
                 .collect(Collectors.toList());
@@ -163,7 +161,7 @@ public class Exercises {
     @Test
     public void sortedLowerCase() throws IOException {
         List<String> output = reader.lines()
-                .map(l -> l.split("\\W+"))
+                .map(l -> l.split(REGEXP))
                 .flatMap(Arrays::stream)
                 .filter(s -> !s.isEmpty())
                 .map(String::toLowerCase)
@@ -199,7 +197,7 @@ public class Exercises {
     @Test
     public void sortedLowerCaseDistinctByLengthThenAlphabetically() throws IOException {
         List<String> output = reader.lines()
-                .map(l -> l.split("\\W+"))
+                .map(l -> l.split(REGEXP))
                 .flatMap(Arrays::stream)
                 .filter(s -> !s.isEmpty())
                 .map(String::toLowerCase)
@@ -233,10 +231,9 @@ public class Exercises {
 
 
     @Test
-    @Ignore
     public void mapLengthToWordList() throws IOException {
         Map<Integer, List<String>> map = reader.lines()
-                .map(l -> l.split("\\W+"))
+                .map(l -> l.split(REGEXP))
                 .flatMap(Arrays::stream)
                 .filter(s -> !s.isEmpty())
                 .collect(groupingBy(String::length));
@@ -255,7 +252,7 @@ public class Exercises {
     @Test
     public void wordFrequencies() throws IOException {
         Map<String, Long> map = reader.lines()
-                .map(l -> l.split("\\W+"))
+                .map(l -> l.split(REGEXP))
                 .flatMap(Arrays::stream)
                 .filter(s -> !s.isEmpty())
                 .collect(groupingBy(s -> s, counting()));
@@ -282,7 +279,7 @@ public class Exercises {
     @Test
     public void nestedGrouping() throws IOException {
         Map<String, Map<Integer, List<String>>> map = reader.lines()
-                .map(l -> l.split("\\W+"))
+                .map(l -> l.split(REGEXP))
                 .flatMap(Arrays::stream)
                 .filter(s -> !s.isEmpty())
                 .collect(groupingBy(s -> s.substring(0,1), groupingBy(String::length)));
