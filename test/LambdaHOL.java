@@ -22,7 +22,7 @@ import static java.util.stream.Collectors.groupingBy;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
-public class Exercises {
+public class LambdaHOL {
 
     @Before
     public void setUpBufferedReader() throws IOException {
