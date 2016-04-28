@@ -16,6 +16,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.groupingBy;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -231,7 +232,11 @@ public class Exercises {
     @Test
     @Ignore
     public void mapLengthToWordList() throws IOException {
-        Map<Integer, List<String>> map = null; /* TODO */
+        Map<Integer, List<String>> map = reader.lines()
+                .map(l -> l.split("\\W+"))
+                .flatMap(Arrays::stream)
+                .filter(s -> !s.isEmpty())
+                .collect(groupingBy(String::length));
 
         assertEquals(6, map.get(7).size());
         assertEquals(Arrays.asList("increase", "ornament"), map.get(8));
