@@ -127,9 +127,11 @@ public class Exercises {
 
 
     @Test
-    @Ignore
     public void listOfAllWords() throws IOException {
-        List<String> output = null; /* TODO */
+        List<String> output = new LinkedList<>();
+        reader.lines()
+              .map(s -> s.split("\\W+"))
+              .forEach(arr -> Arrays.stream(arr).filter(s -> !s.isEmpty()).forEach(output::add));
 
         assertEquals(
                 Arrays.asList(
