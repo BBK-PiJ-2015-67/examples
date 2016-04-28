@@ -1,7 +1,7 @@
 import java.util.Optional;
 
 /**
- * Example class to illustrate the uses of {@code java.util.Optional}
+ * Example class to test the uses of {@code java.util.Optional}
  *
  * @author lmignot
  */

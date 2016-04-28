@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Example class to illustrate the uses of {@code java.util.Optional}
+ * Example class to test the uses of {@code java.util.Optional}
  * in the Java 8 streams API
  *
  * @author lmignot

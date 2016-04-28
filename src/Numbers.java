@@ -8,6 +8,14 @@ public class Numbers {
         System.out.println(toBinary(147));
     }
 
+    /**
+     * Convert a string representing a number to it's HEX counterpart.
+     *
+     * <cite>Original author assumed to be Keith Mannock, taken from provided notes</cite>
+     *
+     * @param num the number to convert to Hex
+     * @return the hex counterpart to the provided number as a string
+     */
     public static String toHex(int num) {
         StringBuilder str = new StringBuilder();
 
@@ -22,6 +30,14 @@ public class Numbers {
         return str.reverse().toString();
     }
 
+    /**
+     * Convert a string representing a number to it's binary counterpart.
+     *
+     * Adapted from above toHex() method
+     *
+     * @param num the number to convert to Hex
+     * @return the binary counterpart to the provided number as a string
+     */
     public static String toBinary(int num) {
         StringBuilder sb = new StringBuilder();
         char bin[] = {'0', '1'};
