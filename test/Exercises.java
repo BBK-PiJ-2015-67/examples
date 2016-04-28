@@ -16,6 +16,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -250,9 +251,12 @@ public class Exercises {
     // lower case.
 
     @Test
-    @Ignore
     public void wordFrequencies() throws IOException {
-        Map<String, Long> map = null; /* TODO */
+        Map<String, Long> map = reader.lines()
+                .map(l -> l.split("\\W+"))
+                .flatMap(Arrays::stream)
+                .filter(s -> !s.isEmpty())
+                .collect(groupingBy(s -> s, counting()));
 
         assertEquals(2L, (long) map.get("tender"));
         assertEquals(6L, (long) map.get("the"));
